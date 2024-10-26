@@ -23,15 +23,9 @@ class _CalculatorAppState extends State<CalculatorApp> {
   final orangeColor = Color(0xffD9802E);
 
   onButtonClick(value) {
-    // if (value == "AC") {
-    //   input = "";
-    //   output = "";
-    // } 
-    if (value == "<") {
-      if (input.isNotEmpty) {
-        input = input.substring(0, input.length - 1);
-      }
-    } else if (value == "=") {
+    print("value  == "+value);
+
+     if (value == "=") {
       if (input.isNotEmpty) {
         var userInput = input.replaceAll("x", "*");
         Parser p = Parser();
@@ -39,9 +33,6 @@ class _CalculatorAppState extends State<CalculatorApp> {
         ContextModel cm = ContextModel();
         var finalValue = expression.evaluate(EvaluationType.REAL, cm);
         output = finalValue.toString();
-        if (output.endsWith(".0")) {
-          output = output.substring(0, output.length - 2);
-        }
         input = output;
         hideInput = true;
         outputSize = 52;
@@ -51,25 +42,6 @@ class _CalculatorAppState extends State<CalculatorApp> {
       hideInput = false;
       outputSize = 34;
     }
-
-    // if (input.isNotEmpty) {
-    //     var userInput = input.replaceAll("x", "*");
-    //     Parser p = Parser();
-    //     Expression expression = p.parse(userInput);
-    //     ContextModel cm = ContextModel();
-    //     var finalValue = expression.evaluate(EvaluationType.REAL, cm);
-    //     output = finalValue.toString();
-    //     if (output.endsWith(".0")) {
-    //       output = output.substring(0, output.length - 2);
-    //     }
-    //     input = output;
-    //     hideInput = true;
-    //     outputSize = 52;
-    //   } else {
-    //   input = input + value;
-    //   hideInput = false;
-    //   outputSize = 34;
-    // }
 
     setState(() {});
   }
@@ -105,7 +77,7 @@ class _CalculatorAppState extends State<CalculatorApp> {
                   color: Colors.white.withOpacity(0.7),
                 ),
               ),
-             const SizedBox(
+              const SizedBox(
                 height: 30,
               ),
             ],
@@ -147,6 +119,7 @@ class _CalculatorAppState extends State<CalculatorApp> {
       ]),
     );
   }
+
   // calculate button to perfrom task
   Widget button({text, tColor = Colors.black, buttonBgColor = buttonColor}) {
     return Expanded(
