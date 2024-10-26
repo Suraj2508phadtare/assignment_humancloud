@@ -27,15 +27,7 @@ class _CalculatorAppState extends State<CalculatorApp> {
 
      if (value == "=") {
       if (input.isNotEmpty) {
-        var userInput = input.replaceAll("x", "*");
-        Parser p = Parser();
-        Expression expression = p.parse(userInput);
-        ContextModel cm = ContextModel();
-        var finalValue = expression.evaluate(EvaluationType.REAL, cm);
-        output = finalValue.toString();
-        input = output;
-        hideInput = true;
-        outputSize = 52;
+        getResult();
       }
     } else {
       input = input + value;
@@ -44,6 +36,18 @@ class _CalculatorAppState extends State<CalculatorApp> {
     }
 
     setState(() {});
+  }
+
+  void getResult() {
+    var userInput = input.replaceAll("x", "*");
+    Parser p = Parser();
+    Expression expression = p.parse(userInput);
+    ContextModel cm = ContextModel();
+    var finalValue = expression.evaluate(EvaluationType.REAL, cm);
+    output = finalValue.toString();
+    input = output;
+    hideInput = true;
+    outputSize = 52;
   }
 
   @override

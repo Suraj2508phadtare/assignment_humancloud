@@ -38,6 +38,7 @@ dependencies:
   math_expressions: ^2.6.0
   flutter_test:
     sdk: flutter
+  expressions: ^0.2.5+2
 
 dev_dependencies:
 
